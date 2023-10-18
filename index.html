@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WSO2 Support Tools</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="highlight/highlight-11.9.0-default.min.css" />
+    <link rel="stylesheet" href="css/tools.css" >
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+            <img src="./images/wso2-logo-white.png" width="70px"/>
+            Support Utils</a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 bg-light d-none d-md-block sidebar">
+                <div class="left-sidebar">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-base64-tab" data-toggle="pill" href="#base64" role="tab" aria-controls="base64" aria-selected="true">Base64 Encode/Decode</a>
+                        <a class="nav-link" id="v-pills-jwt-tab" data-toggle="pill" href="#jwt" role="tab" aria-controls="jwt" aria-selected="false">JWT Decode</a>
+                        <a class="nav-link" id="v-pills-url-tab" data-toggle="pill" href="#url" role="tab" aria-controls="url" aria-selected="false">URL Encode/Decode</a>
+                        <a class="nav-link" id="v-pills-json-tab" data-toggle="pill" href="#json" role="tab" aria-controls="json" aria-selected="false">JSON Formatter</a>
+                        <a class="nav-link" id="v-pills-xml-tab" data-toggle="pill" href="#xml" role="tab" aria-controls="xml" aria-selected="false">XML Formatter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="errorModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="alertMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="base64" role="tabpanel" aria-labelledby="v-pills-base64-tab">
+                <div class="container-fluid">
+                    <div>
+                        <div class="col-md-12" style="text-align: center;">
+                            <h1>Base64 Encode/Decode</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Input
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="textAreaB64Input" style="width: 100%; height: fit-content;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-secondary" id="btnB64Encode"> Encode </button>
+                        </div>
+                        <div class="col-md-10"></div>
+                        <div class="col-md-1" >
+                            <button type="button" class="btn btn-secondary" id="btnB64Decode" style="float: right;"> Decode </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Output
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <pre id="preB64Output">
+                                <code id="preB64OutputCode" class="language-json">
+</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="jwt" role="tabpanel" aria-labelledby="v-pills-jwt-tab">
+                <div class="container-fluid">
+                    <div>
+                        <div class="col-md-12" style="text-align: center;">
+                            <h1>JWT Decode</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Input
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="textAreaJwtInput" style="width: 100%; height: fit-content;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-10"></div>
+                        <div class="col-md-1" >
+                            <button type="button" class="btn btn-secondary" id="btnJwtDecode" style="float: right;"> Decode </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Output
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <pre id="preJwtOutput">
+                                <code id="preJwtOutputCode" class="language-json">
+</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="url" role="tabpanel" aria-labelledby="v-pills-url-tab">
+                <div class="container-fluid">
+                    <div>
+                        <div class="col-md-12" style="text-align: center;">
+                            <h1>URL Encode/Decode</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Input
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="textAreaUrlInput" style="width: 100%; height: fit-content;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-secondary" id="btnUrlEncode"> Encode </button>
+                        </div>
+                        <div class="col-md-10"></div>
+                        <div class="col-md-1" >
+                            <button type="button" class="btn btn-secondary" id="btnUrlDecode" style="float: right;"> Decode </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Output
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <pre id="preUrlOutput">
+                                <code id="preUrlOutputCode">
+</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="json" role="tabpanel" aria-labelledby="v-pills-json-tab">
+                <div class="container-fluid">
+                    <div>
+                        <div class="col-md-12" style="text-align: center;">
+                            <h1>JSON Formatter</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Input
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="textAreaJsonInput" style="width: 100%; height: fit-content;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-10"></div>
+                        <div class="col-md-1" >
+                            <button type="button" class="btn btn-secondary" id="btnJsonFormat" style="float: right;"> Format </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Output
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <pre id="preJsonOutput">
+                                <code id="preJsonOutputCode" class="language-json">
+</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="xml" role="tabpanel" aria-labelledby="v-pills-xml-tab">
+                <div class="container-fluid">
+                    <div>
+                        <div class="col-md-12" style="text-align: center;">
+                            <h1>XML Formatter</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Input
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="textAreaXmlInput" style="width: 100%; height: fit-content;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-10"></div>
+                        <div class="col-md-1" >
+                            <button type="button" class="btn btn-secondary" id="btnXmlFormat" style="float: right;"> Format </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Output
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <pre id="preXmlOutput">
+                                <code id="preXmlOutputCode" class="language-xml">
+</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </main>
+    <script src="js/jquery-3.4.1.slim.min.js" ></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="highlight/highlight-11.9.0.min.js"></script>
+    <script src="highlight/highlight-11.9.0-json.min.js"></script>
+    <script src="highlight/highlight-11.9.0-xml.min.js"></script>
+    <script src="js/scripts.js" ></script>
+    <script>
+        hljs.highlightAll();
+
+        $(document).ready(() => {
+        let url = location.href.replace(/\/$/, "");
+        if (location.hash) {
+            const hash = url.split("#");
+            $('#v-pills-tab a[href="#'+hash[1]+'"]').tab("show");
+            url = location.href.replace(/\/#/, "#");
+            history.replaceState(null, null, url);
+            setTimeout(() => {
+            $(window).scrollTop(0);
+            }, 400);
+        } 
+        
+        $('a[data-toggle="tab"]').on("click", function() {
+            let newUrl;
+            const hash = $(this).attr("href");
+            if(hash == "#base64") {
+            newUrl = url.split("#")[0];
+            } else {
+            newUrl = url.split("#")[0] + hash;
+            }
+            newUrl += "/";
+            history.replaceState(null, null, newUrl);
+        });
+        });
+	</script>	
+  </body>
+</html>
