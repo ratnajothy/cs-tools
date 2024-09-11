@@ -61,7 +61,10 @@ function jwtDecode(){
 }
 
 function urlEncode(){
-    get('preUrlOutputCode').innerText = encodeURIComponent(get('textAreaUrlInput').value);
+    get('preUrlOutputCode').innerText = encodeURIComponent(get('textAreaUrlInput').value).replace(
+        /[!'()*]/g,
+        (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`
+      );
 }
 
 function urlDecode(){
